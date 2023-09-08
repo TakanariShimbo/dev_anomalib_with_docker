@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  dev_anomalib_server:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: python39_with_cuda118_cudnn8_on_ubuntu2204:1.0
+    container_name: container_dev_anomalib
+    ports:
+      - 8888:8888
+    volumes:
+      - ./../work:/work
+    working_dir: /work
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    tty: true
