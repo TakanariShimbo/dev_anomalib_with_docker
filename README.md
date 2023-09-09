@@ -17,7 +17,7 @@ code .
 
 # それ以外の場合
 docker-compose up -d
-docker exec -it container_python39_with_cuda /bin/bash
+docker exec -it container_dev_anomalib /bin/bash
 
 # 3. 仮想環境作成
 python3 -m venv ./myenv
