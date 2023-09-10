@@ -67,7 +67,8 @@ class FeatureExtractor(nn.Module):
             exportable=True,
         )
         self._outputs_holder = OutputsHolder()
-        self.out_dims = []   
+        self.out_dims = []
+        self.out_sizes = []  
         self._register_layer_to_output()
         
     def _hook(self, module, input, output):
@@ -118,6 +119,7 @@ class FeatureExtractor(nn.Module):
             self.feature_extractor(inputs)
             features = dict(zip(self.layers, self._outputs_holder.outputs))
             self.out_dims = [output.shape[1] for output in self._outputs_holder.outputs]
+            self.out_sizes = [output.shape[2] for output in self._outputs_holder.outputs]
         else:
             self.feature_extractor.eval()
             with torch.no_grad():
@@ -125,4 +127,5 @@ class FeatureExtractor(nn.Module):
                 self.feature_extractor(inputs)
                 features = dict(zip(self.layers, self._outputs_holder.outputs))
                 self.out_dims = [output.shape[1] for output in self._outputs_holder.outputs]
+                self.out_sizes = [output.shape[2] for output in self._outputs_holder.outputs]
         return features
