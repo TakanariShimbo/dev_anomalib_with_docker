@@ -38,7 +38,7 @@ pip install --upgrade setuptools
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 # もし lit install 時にエラーが発生する場合は以下コマンドで先にインストールしておき、再度上記コマンドを実行
 # pip install lit==15.0.7
-# torch install 時に Killed と表示される場合は、pip --no-cache-dir install xxxx のように no-cache を加える
+# torch install 時に Killed と表示される場合は、pip --no-cache-dir install xxxx のように --no-cache-dir を加える
 pip install anomalib
 pip install jupyter
 ```
